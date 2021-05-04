@@ -225,8 +225,8 @@
             "Solo debes escribir C de CELSIUS y F de FAHRENHEIT"
           );
 
-        // n = n * 1.8 + 32;
-        // n = n - 32 / 1.8;
+        // n = n * 1.8 + 32; // probando
+        // n = n - 32 / 1.8;  // probando
 
         if (/(C|c)/i.test(t)) {
           c = n * 1.8 + 32;
@@ -270,11 +270,10 @@
 
         if (Math.sign(n) === -1 || Math.sign(d) === -1)
           return console.warn("No puede ser negativo");
-
-        d /= 100; // 20 / 20 = .2
-        r1 = n * d; // 1000 * 0.2 = 200
-        r2 = n - r1; // 1000 - 200 = 800
-        console.info(r2);
+        d /= 100;
+        r1 = n * d;
+        r2 = n - r1;
+        console.log(r2);
       };
       // desc();
       // desc(250);
@@ -285,7 +284,6 @@
       //  miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
       const obtenerTiempo = (time = undefined) => {
         if (time === undefined) return console.warn("No puede estar vacío");
-
         // if (typeof time !== "number") return console.warn("No es un número")
         let ahora = time - Date.now();
         console.info(ahora.getFullYear);
