@@ -251,10 +251,13 @@
           return console.warn("Uno de los datos no es un número");
 
         if (n2 === 2) {
-          console.info(parseInt(n1, n2));
+          console.info(`${n1} base ${n2} = ${parseInt(n1, n2)} base 10`);
+        } else if (n2 === 10) {
+          console.info(`${n1} base ${n2} = ${n1.toString(2)} base 2`);
         }
       };
-      convertirB(10101100, 2);
+      // convertirB(172, 10);
+      // convertirB(10101100, 2);
       // 16) Programa una función que devuelva el monto final después de
       // aplicar un descuento a una cantidad dada, pe.
       //  miFuncion(1000, 20) devolverá 800.
@@ -274,7 +277,7 @@
         d /= 100;
         r1 = n * d;
         r2 = n - r1;
-        console.log(r2);
+        console.log(`${n} con el ${d}% de descuento es = ${r2}`);
       };
       // desc();
       // desc(250);
@@ -285,13 +288,106 @@
       //  miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
       const obtenerTiempo = (time = undefined) => {
         if (time === undefined) return console.warn("No puede estar vacío");
-        // if (typeof time !== "number") return console.warn("No es un número")
-        let ahora = time - Date.now();
-        console.info(ahora.getFullYear);
+        if (!(time instanceof Date))
+          return console.warn("No ingresaste una fecha");
+
+        let ahora = new Date().getTime() - time.getTime(),
+          mesesAri = 1000 * 60 * 60 * 24 * 30.41,
+          diasAri = 1000 * 60 * 60 * 24,
+          añosMilisegundos = diasAri * 365,
+          mesesMilisegundos = Math.floor(ahora / mesesAri),
+          diasMilisegundos = Math.floor(ahora / diasAri),
+          resultadoTiempo = Math.floor(ahora / añosMilisegundos),
+          restanteMilisegundos =
+            (ahora - mesesMilisegundos * mesesAri) / diasAri;
+        // multiplico el numero de meses redondeados
+        // a numero entero por 1 mes milisegundos
+        // y resto en este ejemplo 3 meses - ahora (milesegundos en total)
+        // entre días de la cantidad restante
+        if (Math.sign(resultadoTiempo) == -1) {
+          console.info(` Faltan ${resultadoTiempo} años desde la fecha`);
+        } else if (Math.sign(resultadoTiempo) == 1) {
+          console.info(` Han pasado ${resultadoTiempo} años desde la fecha`);
+        } else if (Math.sign(resultadoTiempo) == 0) {
+          console.info(
+            ` Han pasado ${mesesMilisegundos} meses y ${Math.floor(
+              restanteMilisegundos
+            )} días desde la fecha`
+          );
+        }
       };
-      // obtenerTiempo(new Date(1984, 4, 23));
+
+      // obtenerTiempo(new Date(2021, 1, 1));
       // console.log(Date.now());
-      // HOLA HOLA HOLA
+      // HOLA HOLA HOLA ddd
+
+      // 18) Programa una función que dada una cadena de texto cuente el número
+      // de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+      const contarUnaVocal = (str = "", vocal = "") => {
+        if (!str) return console.warn("No ingresaste un texto");
+        if (!vocal) return console.warn("No ingresaste la palabra a evaluar");
+        if (vocal.length !== 1)
+          return console.warn("Solamente escribe 1 vocal");
+        // if
+        let i = 0;
+        contador = 0;
+
+        if (/(a)/i.test(vocal)) {
+          vocal = "a";
+        } else if (/(e)/i.test(vocal)) {
+          vocal = "e";
+        } else if (/(i)/i.test(vocal)) {
+          vocal = "i";
+        } else if (/(o)/i.test(vocal)) {
+          vocal = "o";
+        } else if (/(u)/i.test(vocal)) {
+          vocal = "u";
+        }
+
+        while (i !== -1) {
+          i = str.indexOf(vocal, i);
+          if (i !== -1) {
+            i++;
+            contador++;
+          }
+        }
+        return vocal > 1
+          ? console.info(
+              `En el texto:\n\n${str} \n\nLa vocal ${vocal} se repite: ${contador} veces`
+            )
+          : console.info(
+              `En el texto:\n\n${str} \n\nLa vocal ${vocal} se repite: ${contador} vez`
+            );
+      };
+
+      contarUnaVocal("Hola Mundoooo", "O");
+
+      // ----------------------------------------------------------------
+      const contarVocalesDos = (str = "", letra = "") => {
+        let vocal = 0;
+        if (!str) return console.warn("No ingresaste un texto");
+        // if (!vocal) return console.warn("No ingresaste la palabra a evaluar");
+        // if (vocal.length !== 1)
+        //   return console.warn("Solamente escribe 1 vocal");
+
+        srt = str.toLocaleLowerCase();
+
+        for (const letra of str) {
+          if (/[a]/i.test(letra)) vocal++;
+          if (/[e]/i.test(letra)) vocal++;
+          if (/[i]/i.test(letra)) vocal++;
+          if (/[o]/i.test(letra)) vocal++;
+          if (/[u]/i.test(letra)) vocal++;
+        }
+        return console.info(
+          `En el texto:\n\n${str} \n\nLa vocal ${letra} se repite: ${vocal} veces`
+        );
+      };
+      contarVocalesDos("Hola mundo", "a");
+      // 19) Programa una función que valide que un texto sea un
+      //  nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+      // 20) Programa una función que valide que un texto sea un
+      // email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
     </script>
   </body>
 </html>

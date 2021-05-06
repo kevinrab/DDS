@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        background-image: url("img/Banner-Apertura-Sede-desktop-1.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* min-height: 200px; */
+        margin: 0 auto;
+        /* max-height: 600px;
+        max-width: 1000px; */
+        background-position: 85% 35%;
+      }
+      .login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      label {
+        position: absolute;
+        padding-left: 1rem;
+        padding: 0 0.25rem;
+        background-color: #fff;
+        transition: 0.3s;
+      }
+
+      input[type="text"] {
+        margin: 10px;
+        margin-top: 30px;
+        position: relative;
+        height: 30px;
+        border: 1px solid;
+        border-radius: 0.5rem;
+      }
+      .form {
+        background-color: #fff;
+        width: 400px;
+        padding: 5em 5em;
+        border-radius: 1rem;
+        box-shadow: 0px 25px 25px rgba(92, 99, 105, 0.5);
+      }
+
+      .boton {
+        display: block;
+        margin-left: 50px;
+        margin-top: 30px;
+        padding: 15px;
+        background-color: rgb(23, 0, 231);
+        color: rgb(255, 255, 255);
+        border: 1px solid;
+        border-radius: 0.5rem;
+        box-shadow: 0px 10px 10px rgba(92, 99, 105, 0.5);
+      }
+      .user_logo {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- DIV - CAJA/ CONTENEDOR  -->
+    <div class="container">
+      <div class="login">
+        <!-- Formulario  -->
+        <form action="" class="form">
+          <div class="user_logo">
+            <img
+              src="img/51f6fb256629fc755b8870c801092942.png"
+              alt="100px"
+              height="100px"
+              style="margin: auto"
+            />
+          </div>
+          <h1 class="form_titulo">Bievenidos,</h1>
+          <h2 class="form_titulo2">Compañeros de Certus</h2>
+          <!-- INPUT DE TEXTO -->
+          <div class="form_input">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="fields" name="nombre" />
+          </div>
+
+          <div class="form_input">
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="fields" name="apellido" />
+          </div>
+          <!-- BOTON -->
+          <input type="button" class="boton" value="Registrarse" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
