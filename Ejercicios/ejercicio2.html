@@ -360,11 +360,12 @@
             );
       };
 
-      contarUnaVocal("Hola Mundoooo", "O");
+      // contarUnaVocal("Hola Mundoooo", "O");
 
       // ----------------------------------------------------------------
-      const contarVocalesDos = (str = "", letra = "") => {
-        let vocal = 0;
+      const contarVocalesDos = (str = "") => {
+        let vocal = 0,
+          consonantes = 0;
         if (!str) return console.warn("No ingresaste un texto");
         // if (!vocal) return console.warn("No ingresaste la palabra a evaluar");
         // if (vocal.length !== 1)
@@ -373,21 +374,52 @@
         srt = str.toLocaleLowerCase();
 
         for (const letra of str) {
-          if (/[a]/i.test(letra)) vocal++;
-          if (/[e]/i.test(letra)) vocal++;
-          if (/[i]/i.test(letra)) vocal++;
-          if (/[o]/i.test(letra)) vocal++;
-          if (/[u]/i.test(letra)) vocal++;
+          if (/[aeiou]/i.test(letra)) vocal++;
+          if (/[bcdfghjklmnñpqrstvwxyz]/i.test(letra)) consonantes++;
         }
         return console.info(
-          `En el texto:\n\n${str} \n\nLa vocal ${letra} se repite: ${vocal} veces`
+          `En el texto:\n\n${str} \n\nHay ${vocal} vocales  y ${consonantes} consonantes en la oración`
         );
       };
-      contarVocalesDos("Hola mundo", "a");
+      // contarVocalesDos(
+      //   "El mejor momento para plantar un árbol era hace 20 años.
+      // El segundo mejor momento es AHORA"
+      // );
+
       // 19) Programa una función que valide que un texto sea un
       //  nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+      const validarNombre = (name = "") => {
+        if (!name) return console.warn("No ingresaste un texto");
+        if (typeof name !== "string") console.warn("No has escrito un nombre");
+
+        reName = /^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$/;
+        reNameDos = /^[A-Za-zÑñÁáÉéÍíÓóÚú]+$/i;
+
+        reName.test(name)
+          ? console.info(`Muchas gracias por registrarte ${name}`)
+          : console.warn("No has escrito un nombre o agregaste números");
+      };
+      // validarNombre();
+      // validarNombre(123);
+      // validarNombre("Kevin123");
+      // validarNombre("Kevin Ruben Ramiréz Blanco");
+
       // 20) Programa una función que valide que un texto sea un
       // email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+      const validarEmail = (email = "") => {
+        if (!email) return console.warn("No ingresaste un texto");
+        if (typeof email !== "string") console.warn("No has escrito un nombre");
+
+        reEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        reEmail2 = /[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i;
+        reEmail2.test(email)
+          ? console.info(`Muchas gracias por registrarte ${email}`)
+          : console.warn("No has escrito un email o agregaste números");
+      };
+      // // validarEmail();
+      // // validarEmail(123);
+      // // validarEmail("Kevin123");
+      // // // validarEmail("kevin@gmail.com");
     </script>
   </body>
 </html>
