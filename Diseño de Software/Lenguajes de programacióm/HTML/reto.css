@@ -1,0 +1,29 @@
+* {
+  margin: auto;
+}
+
+.container {
+  margin: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formclass_fondo {
+  padding: 30px;
+  background-color: lightcoral;
+}
+.formclass {
+  width: 400px;
+  padding: 30px;
+  background-color: white;
+
+  font-style: normal;
+  align-items: center;
+}
+.inputs,
+.check {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  padding: 5px;
+}

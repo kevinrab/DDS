@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asincrona</title>
+  </head>
+  <body>
+    <h1>Asíncronía en Javascript</h1>
+    <script>
+      /*
+                          LISTA DE ASINCRONIA
+                          1.- SetTimeout y SetInterval - ClearInterval/TImeout
+                          2.. Asincronia y el Evento Loop
+            */
+      /*
+            console.log("Inicio");
+            setTimeout(() => {
+              console.log("Ejecutando un setTimeout, esto se ejecuta una vez");
+            }, 3000); */
+
+      // setInterval(() => {
+      //   console.log(
+      //     `Ejecutando un setInterval, esto se ejecuta
+      //     indefinidamente cada cierto intervalo de tiempo`
+      //   );
+      // }, 1000);
+      /*
+            let temporizador = setInterval(() => {
+              console.info(new Date().toLocaleTimeString());
+            }, 1000);
+
+            clearTimeout();
+            setTimeout(() => {
+              clearInterval(temporizador);
+            }, 3000); */
+
+      /*
+            Antes de explicasr como funciona el modelo de
+            Javascript es importante entender algunos conceptos
+
+            Procesamiento Single thread y Multi thread.
+            - Los hilos son las unidades básicas de ejecución de cada proceso
+            - que realiza nuestra maquina.
+            - Internamente esos procesos pueden correr varios hilos
+            - Hay lenguajes de programación que solamente trabajan en un hilo
+            - o varios hilos
+            - Javascript trabaja en un solo hilo
+            -------------------------------------------------------------------
+
+            Operaciones de CPU y Operaciones de I/O
+            - CPU : las que consume nuestra CPU
+            - Operaciones de entrada de salida la que espera una respuesta
+              - vamos enviar un formulario, que se procese la información
+              - y recibas un mensaje: se ha procesado
+              - Solicitar datos de una API y te devuelva un JSON
+            -----------------------------------------------
+
+            Operaciones concurrentes y paralelas
+              Conceptos asociados a codigo asincrono o sincrono
+              Concurrencia:
+            - Dos o más tareas progresan simultaneamente
+            - se ejecutan al mismo tiempo y ahí van avanzando
+            - al mismo tiempo y avanzando simultaneamente
+            Conclusión: Varias tareas van progresando al mismo tiempo
+
+            Paralelismo: Dos o más tareas se ejecutan al mismo tiempo
+                        (van igual y se ejecutan igual)
+            ---------------------------------------------------
+
+            Operaciones de bloqueantes y No Bloqueantes.
+            - Se refiere a la fase de espera cada vez que se
+            ejecutando una linea de codigo
+
+            Bloqueante: Es aquella que no va a devolver el control a la aplicación
+            hasta que haya terminado toda su tarea
+
+            No bloqueante: significa que las operaciones se ejecutan
+            y devuelven inmediatamente el control al hilo principal
+            no importando si han terminado o no la tarea en el momento
+            que una tarea no bloqueante se acabe y mandará una notificación.
+      ---------------------------------------------------------------
+
+            Operaciones Síncronas y Asíncronnas
+            Significa: cuando tendrá lugar la respuesta
+
+            Sincrono: siginica que la respuesta sucede en el presente
+            en el tiempo inmedianto, espera el resultado
+
+            Asincrono la respuesta sucede en un futuro y no sabe cuando
+            va a venir la respuesta
+            ---------------------------------------------------------
+
+
+            Evento loop:
+            */
+
+      /*
+            En javascript vamos a tener:
+            Código Síncrono bloqueante
+            Cada operación se hace de una vez bloqueado en flujo del hilo
+            principal, este hilo queda bloqueado mientras espera la respuesta
+            cuando esta se procesa pasa  la siguiente operación hasta terminar
+            las siguientes operaciones.
+
+
+            Javascript usa un modelo asíncrono y no bloqueante
+            con un loop de eventos implementado en un solo
+            hilo (single thread) para operaciones de entrada y salida
+            (input/output)
+            */
+      /* (() => {
+              console.log("Código Síncrono");
+              console.log("Inicio");
+
+              function dos() {
+                console.log("Dos");
+              }
+              function uno() {
+                console.log("uno");
+                dos();
+                console.log("Tres");
+              }
+              uno();
+              console.log("Fin");
+            })();  */
+      console.log("********************");
+
+      /* Código Asíncrono no bloqueante*/
+      /*   (() => {
+              console.log("Código Síncrono");
+              console.log("Inicio");
+
+              function dos() {
+                setTimeout(() => {
+                  console.log("Dos");
+                }, 1000);
+              }
+
+              function uno() {
+                setTimeout(() => {
+                  console.log("uno");
+                }, 0);
+
+                dos();
+                console.log("Tres");
+              }
+
+              uno();
+              console.log("Fin");
+            })(); */
+
+      // CALLBACKS
+      // recurversidad
+      // function cuadradoCallback(value, callback) {
+      //   setTimeout(() => {
+      //     callback(value, value * value);
+      //   }, 0 | (Math.random() * 100));
+      // }
+
+      // cuadradoCallback(1, (value, result) => {
+      //   console.log("Inicia el callback");
+      //   console.log(`Callback ${value}, ${result}`);
+      //   cuadradoCallback(2, (value, result) => {
+      //     console.log("Inicia el callback");
+      //     console.log(`Callback ${value}, ${result}`);
+      //     cuadradoCallback(3, (value, result) => {
+      //       console.log("Inicia el callback");
+      //       console.log(`Callback ${value}, ${result}`);
+      //       cuadradoCallback(4, (value, result) => {
+      //         console.log("Inicia el callback");
+      //         console.log(`Callback ${value}, ${result}`);
+      //         console.log("Fin Callback Hell");
+      //         console.log("http://callbackhell.com/");
+      //       });
+      //     });
+      //   });
+      // });
+
+      // PROMESAS
+      /*
+      function cuadradoCallbackPromise(value) {
+        if (typeof value !== "number") {
+          return Promise.reject(`El valor ${value} no es un número`);
+        }
+
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({
+              value,
+              result: value * value,
+            });
+          }, 0 | (Math.random() * 100));
+        });
+      }
+      cuadradoCallbackPromise(0)
+        .then((x) => {
+          console.log(x);
+          console.log(`Promise ${x.value}, ${x.result}`);
+          return cuadradoCallbackPromise(1);
+        })
+        .then((x) => {
+          console.log(x);
+          console.log(`Promise ${x.value}, ${x.result}`);
+          return cuadradoCallbackPromise(2);
+        })
+        .then((x) => {
+          console.log(x);
+          console.log(`Promise ${x.value}, ${x.result}`);
+          return cuadradoCallbackPromise(3);
+        })
+        .then((x) => {
+          console.log(x);
+          console.log(`Promise ${x.value}, ${x.result}`);
+          return cuadradoCallbackPromise(4);
+        })
+        .then((x) => {
+          console.log(x);
+          console.log(`Promise ${x.value}, ${x.result}`);
+          return cuadradoCallbackPromise(5);
+        })
+        .then((x) => {
+          console.log(x);
+          console.log(`Promise ${x.value}, ${x.result}`);
+          console.log("Fin de la promesa");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+        */
+      //  Async - Await
+      function cuadradoPromiseAsyncAwait(value) {
+        if (typeof value !== "number") {
+          return Promise.reject(`El valor ${value} no es un número`);
+        }
+
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({
+              value,
+              result: value * value,
+            });
+          }, 0 | (Math.random() * 1000));
+        });
+      }
+
+      async function funcionAsincronaDeclarative() {
+        try {
+          console.log("Inicio Async Function");
+
+          // vas a esperar el resultado de la función
+          let obj = await cuadradoPromiseAsyncAwait(0);
+          console.log(`Promise ${obj.value}, ${obj.result}`);
+
+          obj = await cuadradoPromiseAsyncAwait(1);
+          console.log(`Promise ${obj.value}, ${obj.result}`);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      funcionAsincronaDeclarative();
+
+      const funcionAsincronaExpresada = async () => {
+        try {
+          console.log("Inicio Async Function");
+
+          // vas a esperar el resultado de la función
+          let obj = await cuadradoPromiseAsyncAwait(13);
+          console.log(`Promise ${obj.value}, ${obj.result}`);
+
+          obj = await cuadradoPromiseAsyncAwait(16);
+          console.log(`Promise ${obj.value}, ${obj.result}`);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+      funcionAsincronaExpresada();
+    </script>
+  </body>
+</html>
