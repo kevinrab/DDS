@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error {
+        background-color: red;
+        color: white;
+        padding: 2px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .valido {
+        background-color: green;
+        color: white;
+        padding: 2px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Inicia Sesión</h2>
+    <div id="mensaje"></div>
+    <label for="user">Usuario</label>
+    <input type="text" value="" id="user" />
+    <br />
+    <label for="pass">Contraseña</label>
+    <input type="text" id="pass" />
+    <input type="button" value="Iniciar Sesión" onclick="ejecutar()" />
+
+    <script>
+      const ejecutar = () => {
+        let mensajes;
+        let user = document.querySelector("#user").value;
+        let pass = document.querySelector("#pass").value;
+        if (user !== "root" || pass !== "1234") {
+          mensaje = "Has ingresado los datos incorrecto";
+
+          const mensajeError = setTimeout(() => {
+            document.getElementById(
+              "mensaje"
+            ).innerHTML = `<div>${mensaje}</div>`;
+            document.getElementById("mensaje").className = "error";
+            console.log(mensaje);
+          }, 0);
+
+          setTimeout(() => {
+            document.getElementById("mensaje").innerHTML = ``;
+            document.getElementById("mensaje").className = "";
+            console.log(mensajeError);
+          }, 3000);
+        } else {
+          mensaje = "Has ingresado correctamente";
+
+          const mensajeError = setTimeout(() => {
+            document.getElementById("mensaje").innerHTML = `<div>
+                ${mensaje}
+                </div>`;
+            document.getElementById("mensaje").className = "valido";
+            console.log(mensaje);
+          }, 0);
+
+          setTimeout(() => {
+            document.getElementById("mensaje").innerHTML = ``;
+            document.getElementById("mensaje").className = "";
+            console.log(mensajeError);
+          }, 3000);
+        }
+      };
+    </script>
+  </body>
+</html>

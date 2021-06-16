@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reto 01</title>
+  </head>
+  <body>
+    <h2>Promedio</h2>
+    <input type="button" value="Agregar" onclick="ejecutar()" />
+
+    <script>
+      let pp, ep, ef, alumno;
+      alumno = [];
+      pp = [];
+      ep = [];
+      ef = [];
+      const ejecutar = () => {
+        alumno.push(prompt("Escribe el nombre del Alumno"));
+        pp.push(parseInt(prompt("Escribe un numero")));
+        ep.push(parseInt(prompt("Escribe un numero")));
+        ef.push(parseInt(prompt("Escribe un numero")));
+        if (alumno.length > 0) {
+          for (let i = 0; i < alumno.length; i++) {
+            document.write(`
+               <table border="1">
+      <tr>
+        <td>
+          <p>Alumnos</p>
+        </td>
+        <td>
+          <p>PP - Promedio de Prácticas</p>
+        </td>
+        <td>
+          <p>EP - Evaluación Parcial</p>
+        </td>
+        <td>
+          <p>EF - Evaluación Final</p>
+        </td>
+        <td>
+          <p>Resultado Final</p>
+        </td>
+      </tr><tr>
+                  <td>
+                    ${alumno[i]}
+                    </td>
+                    `);
+          }
+          for (let i = 0; i < pp.length; i++) {
+            document.write(`
+                
+              <td>
+                ${pp[i]}
+                </td>
+                `);
+          }
+          for (let i = 0; i < ep.length; i++) {
+            document.write(`
+                
+                <td>
+                  ${ep[i]}
+                  </td>
+                  `);
+          }
+          for (let i = 0; i < ef.length; i++) {
+            document.write(`
+                  <td>
+                    ${ef[i]}
+                    </td>
+                      </tr></table>`);
+          }
+          /*
+            for (let i = 0; i < re.length; i++) {
+              document.write(`
+                    <td>
+                      ${re[i]}
+                      </td>
+                      `);
+            } */
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parcial</title>
+    <style>
+            .error {
+        background-color: red;
+        color: white;
+        padding: 2px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .valido {
+        background-color: green;
+        color: white;
+        padding: 2px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .tablaEstilo {
+        margin: 10px 10px 10px 10px;
+        font-size: 30px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Parcial</h1>
+    <h2>Alumno: Kevin Ramirez</h2>
+    <br>
+    <!-- EJERCICIO 1 -->
+    <h2>Ejercicio 1</h2>
+    <h4>Calculadora básica</h4>
+
+    <div>
+      <input type="text" id="num1" />
+
+      <select id="lista">
+        <option value="o1">Suma</option>
+        <option value="o2">Resta</option>
+        <option value="o3">Multiplicación</option>
+        <option value="o4">Division</option>
+      </select>
+      <input type="text" id="num2" />
+      <input type="button" value="Calcular" onclick="ejecutar()" />
+    </div>
+    <h2>Resultado</h2>
+    <div id="tabla" class="tablaEstilo"></div>
+    <br />
+    <br />
+<!-- EJERCICIO 2 -->
+    <h2>Ejercicio 2</h2>
+    <h4>Ingresa dos números para detectar cual es mayor</h3>
+    <label for="num3">Número 1</label>
+    <input type="text" id="num3" />
+
+    <label for="num4">Número 2</label>
+    <input type="text" id="num4" />
+
+    <input type="button" value="Detectar" onclick="ejecutar2()" />
+
+    <div id="ejercicio2" class="tablaEstilo"></div>
+    <br />
+<!-- EJERCICIO 3 -->
+    <h2>Ejercicio 3</h2>
+    <h4>Ingresa un número para realizar su tabla del 1 al 10</h4>
+    <label for="num5">Ingresa un número</label>
+    <input type="text" id="num5" />
+    <input type="button" value="Calcular" onclick="ejecutar3()" />
+    <div id="ejercicio3">
+<!-- EJERCICIO 4 -->
+    </div>
+        <h2>Ejercicio 4</h2>
+       <h3>Inicia Sesión</h3>
+    <div id="mensaje"></div>
+    <label for="user">Usuario</label>
+    <input type="text" value="" id="user" />
+    <br />
+    <label for="pass">Contraseña</label>
+    <input type="text" id="pass" />
+    <input type="button" value="Iniciar Sesión" onclick="ejecutar4()" />
+
+    <script>
+         const ejecutar4 = () => {
+        let mensajes;
+        let user = document.querySelector("#user").value;
+        let pass = document.querySelector("#pass").value;
+        if (user !== "root" || pass !== "1234") {
+          mensaje = "Acceso denegado, no pudimos acceder";
+
+          const mensajeError = setTimeout(() => {
+            document.getElementById(
+              "mensaje"
+            ).innerHTML = `<div>${mensaje}</div>`;
+            document.getElementById("mensaje").className = "error";
+            console.log(mensaje);
+          }, 0);
+
+          setTimeout(() => {
+            document.getElementById("mensaje").innerHTML = ``;
+            document.getElementById("mensaje").className = "";
+            console.log(mensajeError);
+          }, 3000);
+        } else {
+          mensaje = "Has ingresado correctamente";
+
+          const mensajeError = setTimeout(() => {
+            document.getElementById("mensaje").innerHTML = `<div>
+                ${mensaje}
+                </div>`;
+            document.getElementById("mensaje").className = "valido";
+            console.log(mensaje);
+          }, 0);
+
+          setTimeout(() => {
+            document.getElementById("mensaje").innerHTML = ``;
+            document.getElementById("mensaje").className = "";
+            console.log(mensajeError);
+          }, 3000);
+        }
+      };
+
+      const ejecutar3 = (num1) => {
+      num1 = parseInt(document.querySelector("#num5").value);
+
+        for (let i = 1; i <= 12; i++) {
+          console.log(num1 * i);
+          let elem = document.getElementById("ejercicio3");
+          elem.insertAdjacentHTML('beforeend', `
+          ${num1} x ${i} = ${num1 * i}` + "<br>");
+        }
+      }
+      const ejecutar2 = () => {
+        let num1 = parseInt(document.querySelector("#num3").value);
+        let num2 = parseInt(document.querySelector("#num4").value);
+
+        if (num1 > num2) {
+          document.getElementById("ejercicio2").innerHTML = `<div>
+                El número mayor es ${num1}
+                </div>`;
+        } else if (num2 > num1) {
+          document.getElementById("ejercicio2").innerHTML = `<div>
+                El número mayor es ${num2}
+                </div>`;
+        } else {
+          document.getElementById("ejercicio2").innerHTML = `<div>
+                son iguales ${num1} = ${num2}
+                </div>`;
+        }
+      };
+
+      const ejecutar = () => {
+        let num1 = parseInt(document.querySelector("#num1").value);
+        let num2 = parseInt(document.querySelector("#num2").value);
+        let op = document.querySelector("#lista").value;
+        console.log(`${num1} ${op} ${num2}`);
+        if (op === "o1") {
+          let suma = num1 + num2;
+          console.log(`${num1} + ${num2} = ${suma}`);
+          document.getElementById("tabla").innerHTML = `<div>
+                ${num1} + ${num2} = ${suma}
+                </div>`;
+        }
+        if (op === "o2") {
+          let resta = num1 - num2;
+          console.log(`${num1} - ${num2} = ${resta}`);
+          document.getElementById("tabla").innerHTML = `<div>
+                ${num1} - ${num2} = ${resta}
+                </div>`;
+        }
+        if (op === "o3") {
+          let multi = num1 * num2;
+          console.log(`${num1} x ${num2} = ${multi}`);
+          document.getElementById("tabla").innerHTML = `<div>
+                ${num1} x ${num2} = ${multi}
+                </div>`;
+        }
+        if (op === "o4") {
+          let divi = num1 / num2;
+          console.log(`${num1} / ${num2} = ${divi}`);
+          document.getElementById("tabla").innerHTML = `<div>
+                ${num1} / ${num2} = ${divi}
+                </div>`;
+        }
+      };
+    </script>
+  </body>
+</html>

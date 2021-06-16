@@ -1,0 +1,9 @@
+Telsa es una empresa americana
+que vende autos electricos, componentes para
+propulsión de vehiculos electricos y baterias domesticas.
+
+Tiene la tecnología de recarga
+llamada supercargadores de corriente continua
+con una potencia de 120KW
+
+Solar Roof es una tecnología de Tesla para casas. Es un sistema de tejas (calaminas) de vidrio que incorporan células fotovoltaicas. (La última tecnología de paneles solares)

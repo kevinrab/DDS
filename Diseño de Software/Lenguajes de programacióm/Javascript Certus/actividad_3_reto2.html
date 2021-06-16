@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .error {
+        background-color: red;
+        color: white;
+        padding: 2px;
+      }
+      .valido {
+        background-color: green;
+      }
+    </style>
+    <title>Reto 2 - Actividad 3</title>
+  </head>
+  <body>
+    <h2>¿Cual es tu edad?</h2>
+    <input type="button" value="Agregar" onclick="ejecutar()" />
+    <p><span class="error" id="error_msg"></span></p>
+    <table border="1" id="tabla">
+      <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Etapa</th>
+      </tr>
+    </table>
+    <br />
+    <h2>Validar mes</h2>
+    <div id="mensaje_mes"></div>
+    <label for="mes">Ingresa el mes de tu cumpleaños en numeros</label>
+    <br />
+    <input type="text" id="mes" name="mes" />
+    <div id="tipo_mes"></div>
+    <br />
+
+    <input type="button" value="Validar" onclick="mes()" />
+
+    <br />
+    <h2>Formulario</h2>
+    <script>
+      const ejecutar = () => {
+        let nombre, edad, mensaje, etapa;
+
+        nombre = prompt("Escribe un nombre");
+        edad = parseInt(prompt("Escribe tu edad"));
+
+        if (typeof nombre !== "string") {
+          console.warn("No es una edad");
+          mensaje = "Escribe un nombre";
+        } else {
+          console.info("Agregado correctamente");
+          mensaje = "Datos agregados correctamente";
+        }
+        if (typeof edad !== "number") {
+          console.warn("No es una edad");
+          mensaje = "No has escrito una edad";
+        } else {
+          console.info("Agregado correctamente");
+          mensaje = "Datos agregados correctamente";
+        }
+
+        if (edad > 6 && edad < 12) {
+          etapa = "Niñez";
+        } else if (edad > 12 && edad < 18) {
+          etapa = "Adolescencia";
+        } else if (edad > 18 && edad < 60) {
+          etapa = "Adultez";
+        } else if (edad > 60) {
+          etapa = "Vejez";
+        } else {
+          etapa = "Primera infancia";
+        }
+        document.getElementById("error_msg").innerHTML = `<div>
+          ${mensaje}
+            </div>`;
+        document.getElementById("tabla").insertRow(-1).innerHTML = `<tr>
+                <td>${nombre}</td>
+                <td>${edad} años </td>
+                <td> ${etapa}</td>
+                </tr>`;
+      };
+
+      const mes = () => {
+        let mensaje, tipoMes;
+        let mes = parseInt(document.querySelector("#mes").value);
+        if (mes === 1) {
+          tipoMes = "Enero";
+        } else if (mes === 2) {
+          tipoMes = "Febrero";
+        } else if (mes === 11) {
+          tipoMes = "Noviembre";
+        } else if (mes === 3) {
+          tipoMes = "Marzo";
+        } else if (mes === 4) {
+          tipoMes = "Abril";
+        } else if (mes === 5) {
+          tipoMes = "Mayo";
+        } else if (mes === 6) {
+          tipoMes = "Junio";
+        } else if (mes === 7) {
+          tipoMes = "Julio";
+        } else if (mes === 8) {
+          tipoMes = "Agosto";
+        } else if (mes === 9) {
+          tipoMes = "Septiembre";
+        } else if (mes === 10) {
+          tipoMes = "Octubre";
+        } else if (mes === 12) {
+          tipoMes = "Diciembre";
+        } else {
+          mensaje = "Escribe un número";
+          document.getElementById("mensaje_mes").innerHTML = `<div>
+          ${mensaje}
+            </div>`;
+          document.getElementById("mensaje_mes").className = "error";
+        }
+        document.getElementById("tipo_mes").innerHTML = `<div>
+          ${tipoMes}
+            </div>`;
+
+        console.log(mes);
+      };
+
+      
+    </script>
+  </body>
+</html>

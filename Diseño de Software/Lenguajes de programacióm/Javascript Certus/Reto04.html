@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabla</title>
+  </head>
+  <body>
+    <h2>Tabla de salarios</h2>
+    <input type="button" value="Agregar" onclick="ejecutar()" />
+    <table border="1" id="tabla">
+      <tr>
+        <th>Horas de trabajo</th>
+        <th>Turno</th>
+        <th>Tarifa</th>
+        <th>Sueldo</th>
+        <th>Con descuento</th>
+      </tr>
+    </table>
+    <br />
+    <h2>Formulario</h2>
+    <script>
+      // let horas, turno, sueldo, descuento, tarifa;
+      // tarifa = 37;
+      // horas = parseInt(prompt("Escribe un numero"));
+      // turno = prompt("Escribe el nombre del Alumno");
+      // if (turno === "t") {
+      //   sueldo = horas * (tarifa * 1.2);
+      // }
+      // console.log(sueldo);
+      const ejecutar = () => {
+        let horas, turno, sueldo, descuento, tarifa;
+
+        horas = parseInt(prompt("Escribe las horas trabajadas"));
+        turno = prompt("Escribe el turno: mañana (m) - tarde (t) - noche (n)");
+
+        tarifa = 37;
+        // SUELDO
+        let mostrarTurno;
+
+        if (turno === "m") {
+          sueldo = horas * tarifa;
+          mostrarTurno = "Mañana";
+        } else if (turno === "t") {
+          sueldo = horas * (tarifa * 1.2);
+          mostrarTurno = "Tarde";
+        } else if (turno === "n") {
+          sueldo = horas * (tarifa * 1.5);
+          mostrarTurno = "Noche";
+        } else sueldo = "No has escrito un turno";
+        // DESCUENTO
+        if (sueldo < 5000) {
+          descuento = sueldo - sueldo * 0.15;
+        } else if (sueldo > 5000) {
+          descuento = sueldo - sueldo * 0.17;
+        }
+        console.log(`${horas}, ${turno},  ${sueldo}, ${descuento}`);
+        /*
+        document.write(`<tr>
+            <td>${horas}</td>
+            <td>${turno}</td>
+            <td>S/. 37 x hora </td>
+            <td> S/. ${sueldo}</td>
+            <td> S/. ${descuento}</td>
+            </tr>`); */
+        document.getElementById("tabla").insertRow(-1).innerHTML = `<tr>
+            <td>${horas}</td>
+            <td>${mostrarTurno}</td>
+            <td>S/. 37 x hora </td>
+            <td> S/. ${sueldo}</td>
+            <td> S/. ${descuento}</td>
+            </tr>`;
+      };
+
+      const formulario = () => {};
+    </script>
+  </body>
+</html>
